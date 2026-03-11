@@ -1,0 +1,92 @@
+export const videos = {
+  english: [
+    {
+      id: 'v-en-1', title: 'English for Beginners: Introduction', level: 'A1',
+      duration: '12:34', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Полное введение в английский язык для начинающих. Мы изучим основные фразы приветствия, представления и базовые конструкции.',
+      tags: ['базовый', 'фразы', 'введение'],
+    },
+    {
+      id: 'v-en-2', title: 'Present Simple: полный разбор', level: 'A1',
+      duration: '18:20', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Детальный разбор Present Simple с множеством примеров. Когда использовать, как строить вопросы и отрицания.',
+      tags: ['грамматика', 'времена', 'Present Simple'],
+    },
+    {
+      id: 'v-en-3', title: 'British vs American English', level: 'A2',
+      duration: '22:10', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Основные различия между британским и американским вариантами английского. Произношение, лексика, грамматика.',
+      tags: ['произношение', 'лексика', 'культура'],
+    },
+    {
+      id: 'v-en-4', title: 'Advanced Vocabulary: Business English', level: 'B2',
+      duration: '31:05', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Деловой английский — необходимая лексика для переговоров, презентаций и переписки.',
+      tags: ['бизнес', 'продвинутый', 'лексика'],
+    },
+    {
+      id: 'v-en-5', title: 'Conditional Sentences Explained', level: 'B1',
+      duration: '25:15', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Все 4 типа условных предложений с примерами из реальной жизни.',
+      tags: ['грамматика', 'условные', 'B1'],
+    },
+    {
+      id: 'v-en-6', title: 'Идиомы и фразовые глаголы', level: 'B1',
+      duration: '19:44', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Топ-30 самых популярных идиом и фразовых глаголов в разговорном английском.',
+      tags: ['идиомы', 'разговорный', 'лексика'],
+    },
+  ],
+  japanese: [
+    {
+      id: 'v-jp-1', title: 'Хирагана за 1 урок', level: 'A1',
+      duration: '24:00', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Выучи всю хирагану за один урок с мнемоническими техниками.',
+      tags: ['хирагана', 'алфавит', 'письмо'],
+    },
+    {
+      id: 'v-jp-2', title: 'Японские числа и счёт', level: 'A1',
+      duration: '15:30', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Числа от 1 до 10,000 на японском. Две системы счёта: японская и китайская.',
+      tags: ['числа', 'счёт', 'базовый'],
+    },
+    {
+      id: 'v-jp-3', title: 'Базовые японские глаголы', level: 'A2',
+      duration: '20:18', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: '50 самых используемых глаголов японского языка с примерами предложений.',
+      tags: ['глаголы', 'лексика', 'A2'],
+    },
+  ],
+  korean: [
+    {
+      id: 'v-kr-1', title: 'Хангыль — корейский алфавит', level: 'A1',
+      duration: '20:00', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Изучи корейский алфавит хангыль с нуля за один урок.',
+      tags: ['хангыль', 'алфавит', 'базовый'],
+    },
+    {
+      id: 'v-kr-2', title: 'K-Drama фразы для начинающих', level: 'A1',
+      duration: '17:22', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Самые частые фразы из корейских дорам с переводом и примерами.',
+      tags: ['разговорный', 'дорама', 'культура'],
+    },
+    {
+      id: 'v-kr-3', title: 'Корейская система вежливости', level: 'B1',
+      duration: '28:45', thumbnail: null,
+      youtubeId: 'dQw4w9WgXcQ',
+      description: 'Honorifics и уровни вежливости в корейском. Когда и как использовать.',
+      tags: ['грамматика', 'вежливость', 'культура'],
+    },
+  ],
+}
