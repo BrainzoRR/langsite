@@ -78,7 +78,7 @@ export default function ShopPage() {
                   onClick={() => buy(item)}
                   disabled={isBought}
                   style={{
-                    width: '100%', padding: '10px', borderRadius: 11, border: 'none', fontFamily: 'DM Sans, sans-serif', fontWeight: 700, fontSize: 13,
+                    width: '100%', padding: '10px', borderRadius: 11, border: 'none', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 700, fontSize: 13,
                     cursor: isBought ? 'not-allowed' : canAfford ? 'pointer' : 'not-allowed',
                     background: isBought ? 'rgba(63,185,80,.15)' : canAfford ? 'rgba(250,191,36,.12)' : 'rgba(30,30,30,.5)',
                     color: isBought ? '#3fb950' : canAfford ? '#fbbf24' : '#4b4f58',

@@ -20,7 +20,7 @@ export default function LessonsPage() {
         <div className="flex items-center gap-2 mb-6 flex-wrap">
           {['Все', 'A1', 'A2', 'B1', 'B2'].map(lv => (
             <button key={lv} onClick={() => setLevelFilter(lv)}
-              style={{ padding: '7px 16px', borderRadius: 10, border: `1px solid ${levelFilter === lv ? '#58a6ff' : '#21262d'}`, background: levelFilter === lv ? '#58a6ff' : '#161b22', color: levelFilter === lv ? '#fff' : '#8b949e', cursor: 'pointer', fontSize: 13, fontFamily: 'DM Sans, sans-serif', fontWeight: 500 }}>
+              style={{ padding: '7px 16px', borderRadius: 10, border: `1px solid ${levelFilter === lv ? '#58a6ff' : '#21262d'}`, background: levelFilter === lv ? '#58a6ff' : '#161b22', color: levelFilter === lv ? '#fff' : '#8b949e', cursor: 'pointer', fontSize: 13, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}>
               {lv}
             </button>
           ))}
@@ -70,7 +70,7 @@ export default function LessonsPage() {
         {activeVideo && (
           <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,.95)', backdropFilter: 'blur(8px)', zIndex: 100, display: 'flex', flexDirection: 'column' }}>
             <div style={{ padding: '14px 20px', borderBottom: '1px solid #21262d', display: 'flex', alignItems: 'center', gap: 12 }}>
-              <button onClick={() => setActiveVideo(null)} style={{ background: 'none', border: 'none', color: '#8b949e', cursor: 'pointer', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'DM Sans, sans-serif' }}>
+              <button onClick={() => setActiveVideo(null)} style={{ background: 'none', border: 'none', color: '#8b949e', cursor: 'pointer', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Space Grotesk, sans-serif' }}>
                 ← Назад
               </button>
               <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, color: '#fff', flex: 1 }}>{activeVideo.title}</span>

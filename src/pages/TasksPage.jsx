@@ -65,7 +65,7 @@ export default function TasksPage() {
             <div style={{ fontSize: 11, color: '#8b949e', marginBottom: 2 }}>Интенсивность обучения</div>
             <div style={{ fontWeight: 700, color: '#fff', fontSize: 15 }}>{curGoal.label} — {curGoal.desc}</div>
           </div>
-          <button onClick={() => setShowGoal(!showGoal)} style={{ background: '#21262d', border: '1px solid #30363d', borderRadius: 10, color: '#8b949e', cursor: 'pointer', fontSize: 13, padding: '7px 14px', fontFamily: 'DM Sans, sans-serif', fontWeight: 500 }}>
+          <button onClick={() => setShowGoal(!showGoal)} style={{ background: '#21262d', border: '1px solid #30363d', borderRadius: 10, color: '#8b949e', cursor: 'pointer', fontSize: 13, padding: '7px 14px', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 500 }}>
             {showGoal ? 'Закрыть' : 'Изменить'}
           </button>
         </div>
@@ -92,7 +92,7 @@ export default function TasksPage() {
         {/* Tabs */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 20, background: '#161b22', padding: 6, borderRadius: 16, border: '1px solid #21262d' }}>
           {[{ id: 'daily', l: '☀️ Ежедневные' }, { id: 'weekly', l: '📅 Еженедельные' }, { id: 'ach', l: '🏆 Достижения' }].map(t => (
-            <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: '10px', borderRadius: 12, border: `1px solid ${tab === t.id ? '#21262d' : 'transparent'}`, background: tab === t.id ? '#0d1117' : 'transparent', color: tab === t.id ? '#fff' : '#8b949e', cursor: 'pointer', fontSize: 13, fontWeight: 600, fontFamily: 'DM Sans, sans-serif' }}>
+            <button key={t.id} onClick={() => setTab(t.id)} style={{ flex: 1, padding: '10px', borderRadius: 12, border: `1px solid ${tab === t.id ? '#21262d' : 'transparent'}`, background: tab === t.id ? '#0d1117' : 'transparent', color: tab === t.id ? '#fff' : '#8b949e', cursor: 'pointer', fontSize: 13, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif' }}>
               {t.l}
             </button>
           ))}

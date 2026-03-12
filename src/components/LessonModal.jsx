@@ -89,7 +89,7 @@ export default function LessonModal({ lesson, onClose, onComplete }) {
                     key={i}
                     onClick={() => !checked && setSel(i)}
                     className={checked && sel === i && i !== q.ans ? 'animate-shake' : ''}
-                    style={{ padding: '13px 12px', borderRadius: 12, textAlign: 'left', cursor: checked ? 'default' : 'pointer', fontSize: 13, fontFamily: 'DM Sans, sans-serif', border: `1px solid ${borderCol}`, background: bgCol, color: textCol, transition: 'all .15s' }}
+                    style={{ padding: '13px 12px', borderRadius: 12, textAlign: 'left', cursor: checked ? 'default' : 'pointer', fontSize: 13, fontFamily: 'Space Grotesk, sans-serif', border: `1px solid ${borderCol}`, background: bgCol, color: textCol, transition: 'all .15s' }}
                   >
                     <span style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: 14, marginRight: 8 }}>{String.fromCharCode(65 + i)}.</span>
                     {opt}
@@ -103,13 +103,13 @@ export default function LessonModal({ lesson, onClose, onComplete }) {
             <div>
               <div style={{ minHeight: 52, border: '1px dashed #30363d', borderRadius: 12, padding: 10, display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14, background: '#0d1117' }}>
                 {arr.map((w, i) => (
-                  <button key={i} onClick={() => !checked && removeWord(w, i)} style={{ padding: '6px 12px', background: 'rgba(88,166,255,.15)', border: '1px solid rgba(88,166,255,.3)', borderRadius: 8, color: '#58a6ff', cursor: 'pointer', fontSize: 13, fontFamily: 'DM Sans, sans-serif' }}>{w}</button>
+                  <button key={i} onClick={() => !checked && removeWord(w, i)} style={{ padding: '6px 12px', background: 'rgba(88,166,255,.15)', border: '1px solid rgba(88,166,255,.3)', borderRadius: 8, color: '#58a6ff', cursor: 'pointer', fontSize: 13, fontFamily: 'Space Grotesk, sans-serif' }}>{w}</button>
                 ))}
                 {arr.length === 0 && <span style={{ color: '#484f58', fontSize: 13 }}>Нажимай на слова ниже...</span>}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {rem.map((w, i) => (
-                  <button key={i} onClick={() => !checked && addWord(w, i)} style={{ padding: '6px 12px', background: '#21262d', border: '1px solid #30363d', borderRadius: 8, color: '#fff', cursor: 'pointer', fontSize: 13, fontFamily: 'DM Sans, sans-serif' }}>{w}</button>
+                  <button key={i} onClick={() => !checked && addWord(w, i)} style={{ padding: '6px 12px', background: '#21262d', border: '1px solid #30363d', borderRadius: 8, color: '#fff', cursor: 'pointer', fontSize: 13, fontFamily: 'Space Grotesk, sans-serif' }}>{w}</button>
                 ))}
               </div>
             </div>

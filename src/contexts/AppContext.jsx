@@ -7,10 +7,10 @@ const defaultUser = {
   language: 'english',
   levels: { english: 'A1', japanese: 'A1', korean: 'A1' },
   dailyGoal: 30,
-  xp: 0, streak: 7, coins: 340, gems: 12,
+  xp: 0, streak: 0, coins: 0,
   completedLessons: [], completedVideos: [],
-  subscribedAt: new Date().toISOString(),
-  subscriptionEnds: new Date(Date.now() + 30*24*60*60*1000).toISOString(),
+  isPremium: false,
+  subscriptionEnds: null,
 }
 
 export function AppProvider({ children }) {

@@ -16,7 +16,13 @@ export default function ProfilePage() {
   const [nameVal, setNameVal] = useState(user?.name || '')
   const [editLang, setEditLang] = useState(null) // id языка, чей уровень редактируем
 
+  const isPremium = user?.isPremium || false
   const sub = user?.subscriptionEnds ? new Date(user.subscriptionEnds) : null
+
+  const buySubscription = () => {
+    const ends = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+    updateUser({ isPremium: true, subscriptionEnds: ends.toISOString() })
+  }
 
   const saveName = () => { if (nameVal.trim()) updateUser({ name: nameVal.trim() }); setEditingName(false) }
 
@@ -87,7 +93,7 @@ export default function ProfilePage() {
                     <span style={{ fontSize: 12, fontWeight: 700, color: '#58a6ff', background: 'rgba(88,166,255,.1)', padding: '3px 10px', borderRadius: 8 }}>{curLvl}</span>
                     <button
                       onClick={() => setEditLang(isEditing ? null : lang.id)}
-                      style={{ background: 'none', border: 'none', color: '#8b949e', cursor: 'pointer', fontSize: 12, padding: '4px 8px', borderRadius: 8, fontFamily: 'DM Sans, sans-serif' }}
+                      style={{ background: 'none', border: 'none', color: '#8b949e', cursor: 'pointer', fontSize: 12, padding: '4px 8px', borderRadius: 8, fontFamily: 'Space Grotesk, sans-serif' }}
                     >
                       {isEditing ? '✕' : 'Изменить'}
                     </button>
@@ -113,23 +119,35 @@ export default function ProfilePage() {
         </div>
 
         {/* Subscription */}
-        <div style={{ background: 'rgba(210,153,34,.06)', border: '1px solid rgba(210,153,34,.2)', borderRadius: 18, padding: 20 }}>
+        <div style={{ background: isPremium ? 'rgba(210,153,34,.06)' : 'rgba(88,166,255,.04)', border: `1px solid ${isPremium ? 'rgba(210,153,34,.2)' : 'rgba(88,166,255,.12)'}`, borderRadius: 18, padding: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(210,153,34,.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Crown size={20} style={{ color: '#d29922' }} />
+            <div style={{ width: 40, height: 40, borderRadius: 12, background: isPremium ? 'rgba(210,153,34,.15)' : 'rgba(88,166,255,.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Crown size={20} style={{ color: isPremium ? '#d29922' : '#58a6ff' }} />
             </div>
             <div style={{ flex: 1 }}>
               <div className="font-semibold text-white">Premium подписка</div>
-              <div className="text-xs text-[#8b949e]">{sub ? `Активна до ${sub.toLocaleDateString('ru-RU')}` : 'Нет активной подписки'}</div>
+              <div className="text-xs text-[#8b949e]">
+                {isPremium && sub ? `Активна до ${sub.toLocaleDateString('ru-RU')}` : 'Нет активной подписки'}
+              </div>
             </div>
-            <span style={{ fontSize: 10, fontWeight: 700, color: '#d29922', background: 'rgba(210,153,34,.1)', border: '1px solid rgba(210,153,34,.25)', padding: '3px 10px', borderRadius: 8 }}>PREMIUM</span>
+            {isPremium && <span style={{ fontSize: 10, fontWeight: 700, color: '#d29922', background: 'rgba(210,153,34,.1)', border: '1px solid rgba(210,153,34,.25)', padding: '3px 10px', borderRadius: 8 }}>PREMIUM</span>}
           </div>
-          {sub && (
-            <div className="text-xs text-[#8b949e] mb-4 flex items-center gap-1.5">
-              <Calendar size={12} /> Подписка с {new Date(user?.subscribedAt).toLocaleDateString('ru-RU')}
+          {!isPremium ? (
+            <div>
+              <ul style={{ color: '#8b949e', fontSize: 13, marginBottom: 14, paddingLeft: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {['Доступ ко всем урокам и уровням', 'Неограниченные контрольные', 'Расширенная статистика', 'Приоритетная поддержка'].map(f => (
+                  <li key={f} style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ color: '#3fb950' }}>✓</span> {f}</li>
+                ))}
+              </ul>
+              <button onClick={buySubscription} className="btn-primary w-full py-3" style={{ background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)' }}>
+                👑 Оформить Premium — 299₽/мес
+              </button>
             </div>
+          ) : (
+            <button className="btn-primary w-full py-3" style={{ background: 'rgba(210,153,34,.12)', color: '#d29922', border: '1px solid rgba(210,153,34,.25)' }}>
+              ♻️ Продлить подписку
+            </button>
           )}
-          <button className="btn-primary w-full py-3">💳 Продлить подписку</button>
         </div>
 
         {/* Danger */}
@@ -138,7 +156,7 @@ export default function ProfilePage() {
           <div className="text-xs text-[#8b949e] mb-4">Сброс прогресса удалит все данные об обучении</div>
           <button
             onClick={() => { if (window.confirm('Сбросить весь прогресс?')) updateUser({ xp: 0, completedLessons: [], completedVideos: [], streak: 0 }) }}
-            style={{ background: 'none', border: '1px solid rgba(239,68,68,.3)', color: '#f87171', borderRadius: 10, padding: '9px 16px', cursor: 'pointer', fontSize: 13, fontFamily: 'DM Sans, sans-serif' }}>
+            style={{ background: 'none', border: '1px solid rgba(239,68,68,.3)', color: '#f87171', borderRadius: 10, padding: '9px 16px', cursor: 'pointer', fontSize: 13, fontFamily: 'Space Grotesk, sans-serif' }}>
             Сбросить прогресс
           </button>
         </div>
