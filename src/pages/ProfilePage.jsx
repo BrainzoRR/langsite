@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import { useApp } from '../contexts/AppContext'
 import { LEVELS } from '../data/lessons'
-import { Crown, Calendar } from 'lucide-react'
+import { Crown } from 'lucide-react'
 
 const LANGS = [
   { id: 'english',  flag: '🇺🇸', name: 'English'  },
@@ -17,7 +17,7 @@ export default function ProfilePage() {
   const [editLang, setEditLang] = useState(null) // id языка, чей уровень редактируем
 
   const isPremium = user?.isPremium || false
-  const sub = user?.subscriptionEnds ? new Date(user.subscriptionEnds) : null
+  const sub = user?.subscriptionEnds ? (() => { try { return new Date(user?.subscriptionEnds) } catch { return null } })() : null
 
   const buySubscription = () => {
     const ends = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
@@ -27,7 +27,7 @@ export default function ProfilePage() {
   const saveName = () => { if (nameVal.trim()) updateUser({ name: nameVal.trim() }); setEditingName(false) }
 
   const setLevel = (langId, level) => {
-    updateUser({ levels: { ...user.levels, [langId]: level } })
+    updateUser({ levels: { ...(user?.levels || {}), [langId]: level } })
     setEditLang(null)
   }
 

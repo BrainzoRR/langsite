@@ -203,7 +203,7 @@ const modalStyle = { background: '#161b22', border: '1px solid #21262d', borderR
 
 // ── EXAMS PAGE ───────────────────────────────────────────────────────────────
 export default function ExamsPage() {
-  const { user, completeLesson, updateUser } = useApp()
+  const { user, completeExam } = useApp()
   const [active, setActive] = useState(null)
   const [toast, setToast] = useState(null)
 
@@ -213,15 +213,7 @@ export default function ExamsPage() {
   const handleComplete = (exam, passed, earnedXP, isPerfect) => {
     setActive(null)
     if (!passed) return
-
-    const updates = { xp: (user?.xp || 0) + earnedXP }
-    if (!completedExams.includes(exam.id)) {
-      updates.completedExams = [...completedExams, exam.id]
-    }
-    if (isPerfect) {
-      updates.perfectExams = (user?.perfectExams || 0) + 1
-    }
-    updateUser(updates)
+    completeExam(exam.id, earnedXP, isPerfect)
     showToast(isPerfect ? `🎯 Идеальный результат! +${earnedXP} XP` : `🎓 Уровень ${exam.targetLevel} открыт! +${earnedXP} XP`, true)
   }
 

@@ -33,11 +33,11 @@ export default function Header({ title }) {
           <div style={{display:'flex',alignItems:'center',gap:8}}>
             <div style={{display:'flex',alignItems:'center',gap:6,padding:'6px 12px',borderRadius:10,background:'rgba(249,115,22,.08)',border:'1px solid rgba(249,115,22,.18)'}}>
               <Flame size={13} color="#fb923c"/>
-              <span style={{color:'#fb923c',fontWeight:700,fontSize:13}}>{user.streak}</span>
+              <span style={{color:'#fb923c',fontWeight:700,fontSize:13}}>{user?.streak || 0}</span>
             </div>
             <div style={{display:'flex',alignItems:'center',gap:6,padding:'6px 12px',borderRadius:10,background:'rgba(245,158,11,.08)',border:'1px solid rgba(245,158,11,.18)'}}>
               <CoinIcon/>
-              <span style={{color:'#fbbf24',fontWeight:700,fontSize:13}}>{user.coins}</span>
+              <span style={{color:'#fbbf24',fontWeight:700,fontSize:13}}>{user?.coins || 0}</span>
             </div>
           </div>
         )}

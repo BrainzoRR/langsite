@@ -42,10 +42,10 @@ export default function Sidebar() {
           <div style={{ background: '#161b22', border: '1px solid #21262d', borderRadius: 12, padding: '10px 12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
               <div style={{ width: 32, height: 32, borderRadius: 9, background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Syne, sans-serif', fontWeight: 700, color: '#fff', fontSize: 14, flexShrink: 0 }}>
-                {user.name?.[0]?.toUpperCase() || '?'}
+                {user?.name?.[0]?.toUpperCase() || '?'}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 600, color: '#fff', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.name}</div>
+                <div style={{ fontWeight: 600, color: '#fff', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user?.name}</div>
                 <div style={{ fontSize: 11, color: '#8b949e' }}>Уровень {level} · {levelTitle(level)}</div>
               </div>
               <div style={{ flexShrink: 0 }}>
@@ -57,7 +57,7 @@ export default function Sidebar() {
               <div style={{ height: '100%', width: `${pct}%`, background: 'linear-gradient(90deg,#58a6ff,#bc8cff)', borderRadius: 999, transition: 'width .6s' }} />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
-              <span style={{ fontSize: 10, color: '#484f58' }}>⚡ {user.xp} XP</span>
+              <span style={{ fontSize: 10, color: '#484f58' }}>⚡ {user?.xp || 0} XP</span>
               <span style={{ fontSize: 10, color: '#484f58' }}>до Lv {level + 1}: {needed - progress} XP</span>
             </div>
           </div>
@@ -78,8 +78,8 @@ export default function Sidebar() {
       {user && (
         <div style={{ padding: '0 10px 8px' }}>
           <div style={{ padding: '8px 12px', borderRadius: 10, background: '#161b22', border: '1px solid #21262d', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: 18 }}>{FLAGS[user.language]}</span>
-            <span style={{ fontSize: 13, color: '#8b949e', flex: 1 }}>{NAMES[user.language]}</span>
+            <span style={{ fontSize: 18 }}>{FLAGS[user?.language] || '🌍'}</span>
+            <span style={{ fontSize: 13, color: '#8b949e', flex: 1 }}>{NAMES[user?.language] || '...'}</span>
           </div>
         </div>
       )}
