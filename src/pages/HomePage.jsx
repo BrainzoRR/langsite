@@ -6,12 +6,12 @@ import { dailyGoalOptions } from '../data/lessons'
 import { Flame, Zap, BookOpen } from 'lucide-react'
 
 const CATS = [
-  { id: 'g',      icon: '🎯', title: 'Грамматика',  desc: 'Игры и упражнения', count: 24,  grad: 'linear-gradient(135deg,rgba(29,78,216,.8),rgba(30,58,138,.8))',   border: 'rgba(59,130,246,.3)',  path: '/training' },
-  { id: 'v',      icon: '📚', title: 'Новые слова',  desc: 'Изучение лексики',  count: 150, grad: 'linear-gradient(135deg,rgba(109,40,217,.8),rgba(76,29,149,.8))',   border: 'rgba(139,92,246,.3)', path: '/training' },
-  { id: 'vid',    icon: '🎬', title: 'Видеоуроки',   desc: 'Записанные уроки',  count: 12,  grad: 'linear-gradient(135deg,rgba(5,150,105,.8),rgba(4,120,87,.8))',     border: 'rgba(16,185,129,.3)', path: '/lessons'  },
-  { id: 'live',   icon: '📡', title: 'Трансляции',   desc: 'Coming soon',       count: null, grad: 'linear-gradient(135deg,rgba(51,65,85,.7),rgba(30,41,59,.7))',     border: 'rgba(100,116,139,.15)', path: null },
-  { id: 'league', icon: '🏆', title: 'Лиги',         desc: 'Coming soon',       count: null, grad: 'linear-gradient(135deg,rgba(180,83,9,.7),rgba(146,64,14,.7))',    border: 'rgba(245,158,11,.15)', path: null },
-  { id: 'events', icon: '🎁', title: 'События',      desc: 'Coming soon',       count: null, grad: 'linear-gradient(135deg,rgba(190,18,60,.7),rgba(136,19,55,.7))',   border: 'rgba(244,63,94,.15)',  path: null },
+  { id: 'g',    icon: '🎯', title: 'Тренировка',  desc: 'Грамматика и уроки',  count: 24,  grad: 'linear-gradient(135deg,rgba(29,78,216,.8),rgba(30,58,138,.8))',  border: 'rgba(59,130,246,.3)',  path: '/training'    },
+  { id: 'exam', icon: '🎓', title: 'Экзамены',    desc: 'Переход на след. уровень', count: null, grad: 'linear-gradient(135deg,rgba(210,153,34,.7),rgba(161,110,17,.8))', border: 'rgba(210,153,34,.35)', path: '/exams'    },
+  { id: 'vid',  icon: '🎬', title: 'Видеоуроки',  desc: 'Записанные уроки',    count: 12,  grad: 'linear-gradient(135deg,rgba(5,150,105,.8),rgba(4,120,87,.8))',   border: 'rgba(16,185,129,.3)', path: '/lessons'     },
+  { id: 'lb',   icon: '🏆', title: 'Лидерборд',   desc: 'Топ недели и месяца', count: null, grad: 'linear-gradient(135deg,rgba(180,83,9,.75),rgba(146,64,14,.8))', border: 'rgba(245,158,11,.3)', path: '/leaderboard' },
+  { id: 'live', icon: '📡', title: 'Трансляции',  desc: 'Coming soon',         count: null, grad: 'linear-gradient(135deg,rgba(51,65,85,.7),rgba(30,41,59,.7))',   border: 'rgba(100,116,139,.15)', path: null },
+  { id: 'ev',   icon: '🎁', title: 'События',     desc: 'Coming soon',         count: null, grad: 'linear-gradient(135deg,rgba(190,18,60,.7),rgba(136,19,55,.7))', border: 'rgba(244,63,94,.15)',  path: null },
 ]
 
 export default function HomePage() {

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { X, CheckCircle2, XCircle, Zap } from 'lucide-react'
+import { calcXP } from '../data/leaderboard'
+import { useApp } from '../contexts/AppContext'
 
 export default function LessonModal({ lesson, onClose, onComplete }) {
+  const { user } = useApp()
   const [qi, setQi] = useState(0)
   const [sel, setSel] = useState(null)
   const [arr, setArr] = useState([])
@@ -33,7 +36,7 @@ export default function LessonModal({ lesson, onClose, onComplete }) {
   const removeWord = (w, i) => { setRem(r => [...r, w]); setArr(a => a.filter((_, j) => j !== i)) }
 
   const pct = done ? Math.round(score / lesson.questions.length * 100) : 0
-  const earned = done ? Math.round(lesson.xp * (pct / 100)) : 0
+  const earned = done ? calcXP({ baseXP: lesson.xp, correct: score, total: lesson.questions.length, streak: user?.streak || 0 }) : 0
 
   return (
     <div className="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -52,7 +55,7 @@ export default function LessonModal({ lesson, onClose, onComplete }) {
           <div className="flex items-center justify-center gap-2 text-yellow-400 font-bold text-xl mb-6">
             <Zap size={20} /> +{earned} XP
           </div>
-          <button onClick={() => { onComplete(lesson.id, earned); onClose() }} className="btn-primary w-full py-3 text-base">
+          <button onClick={() => { onComplete(lesson.id, lesson.xp, score, lesson.questions.length); onClose() }} className="btn-primary w-full py-3 text-base">
             Продолжить
           </button>
         </div>

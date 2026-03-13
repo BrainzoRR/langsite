@@ -1,15 +1,18 @@
 import React from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
-import { Home, BookOpen, Gamepad2, ClipboardList, ShoppingBag, User, LogOut, Zap } from 'lucide-react'
+import { Home, BookOpen, Gamepad2, ClipboardList, ShoppingBag, User, LogOut, Zap, Trophy, GraduationCap } from 'lucide-react'
+import { xpProgress, levelTitle } from '../data/leaderboard'
 
 const NAV = [
-  { path: '/home',     icon: Home,          label: 'Обучение'   },
-  { path: '/lessons',  icon: BookOpen,       label: 'Видеоуроки' },
-  { path: '/training', icon: Gamepad2,       label: 'Тренировка' },
-  { path: '/tasks',    icon: ClipboardList,  label: 'Задания'    },
-  { path: '/shop',     icon: ShoppingBag,    label: 'Магазин'    },
-  { path: '/profile',  icon: User,           label: 'Профиль'    },
+  { path: '/home',        icon: Home,          label: 'Обучение'   },
+  { path: '/lessons',     icon: BookOpen,       label: 'Видеоуроки' },
+  { path: '/training',    icon: Gamepad2,       label: 'Тренировка' },
+  { path: '/exams',       icon: GraduationCap,  label: 'Экзамены'   },
+  { path: '/tasks',       icon: ClipboardList,  label: 'Задания'    },
+  { path: '/shop',        icon: ShoppingBag,    label: 'Магазин'    },
+  { path: '/leaderboard', icon: Trophy,         label: 'Лидерборд'  },
+  { path: '/profile',     icon: User,           label: 'Профиль'    },
 ]
 
 const FLAGS = { english: '🇺🇸', japanese: '🇯🇵', korean: '🇰🇷' }
@@ -18,74 +21,73 @@ const NAMES = { english: 'English', japanese: 'Japanese', korean: 'Korean' }
 export default function Sidebar() {
   const { user, logout } = useApp()
   const navigate = useNavigate()
+
+  const { level, progress, needed, pct } = xpProgress(user?.xp || 0)
   const curLevel = user?.levels?.[user?.language] || 'A1'
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-[#0d1117] border-r border-[#21262d] flex flex-col z-40">
+    <aside style={{ position: 'fixed', left: 0, top: 0, height: '100vh', width: 256, background: '#0d1117', borderRight: '1px solid #21262d', display: 'flex', flexDirection: 'column', zIndex: 40 }}>
       {/* Logo */}
-      <div className="p-5 border-b border-[#21262d] flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center text-xl font-bold text-white shadow-lg">L</div>
+      <div style={{ padding: '20px 20px', borderBottom: '1px solid #21262d', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ width: 38, height: 38, borderRadius: 11, background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Syne, sans-serif', fontSize: 20, fontWeight: 800, color: '#fff', boxShadow: '0 0 20px rgba(59,130,246,.3)', flexShrink: 0 }}>L</div>
         <div>
-          <div style={{ fontFamily: 'Syne, sans-serif' }} className="font-bold text-white text-lg leading-none">LinguaQuest</div>
-          <div className="text-xs text-[#8b949e] mt-0.5">Учи языки играя</div>
+          <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: 17, color: '#fff', letterSpacing: -0.5 }}>LinguaQuest</div>
+          <div style={{ fontSize: 11, color: '#484f58', marginTop: 1 }}>Учи языки играя</div>
         </div>
       </div>
 
-      {/* Current language badge */}
+      {/* User mini-card */}
       {user && (
-        <div className="px-4 pt-3">
-          <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#161b22] border border-[#21262d]">
-            <span className="text-xl">{FLAGS[user.language]}</span>
-            <div>
-              <div className="text-[10px] text-[#8b949e]">Изучаю</div>
-              <div className="text-sm font-semibold text-white">{NAMES[user.language]}</div>
+        <div style={{ padding: '10px 12px 0' }}>
+          <div style={{ background: '#161b22', border: '1px solid #21262d', borderRadius: 12, padding: '10px 12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+              <div style={{ width: 32, height: 32, borderRadius: 9, background: 'linear-gradient(135deg,#3b82f6,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Syne, sans-serif', fontWeight: 700, color: '#fff', fontSize: 14, flexShrink: 0 }}>
+                {user.name?.[0]?.toUpperCase() || '?'}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 600, color: '#fff', fontSize: 13, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.name}</div>
+                <div style={{ fontSize: 11, color: '#8b949e' }}>Уровень {level} · {levelTitle(level)}</div>
+              </div>
+              <div style={{ flexShrink: 0 }}>
+                <span style={{ fontSize: 10, fontWeight: 700, color: '#58a6ff', background: 'rgba(88,166,255,.1)', padding: '2px 6px', borderRadius: 5, fontFamily: 'Syne, sans-serif' }}>{curLevel}</span>
+              </div>
             </div>
-            <span className="ml-auto text-xs font-bold text-[#58a6ff] bg-[#58a6ff]/10 px-2 py-0.5 rounded-md">
-              {curLevel}
-            </span>
+            {/* XP bar */}
+            <div style={{ height: 4, background: '#21262d', borderRadius: 999, overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${pct}%`, background: 'linear-gradient(90deg,#58a6ff,#bc8cff)', borderRadius: 999, transition: 'width .6s' }} />
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+              <span style={{ fontSize: 10, color: '#484f58' }}>⚡ {user.xp} XP</span>
+              <span style={{ fontSize: 10, color: '#484f58' }}>до Lv {level + 1}: {needed - progress} XP</span>
+            </div>
           </div>
         </div>
       )}
 
       {/* Nav */}
-      <nav className="flex-1 px-3 pt-3 space-y-0.5 overflow-y-auto">
+      <nav style={{ flex: 1, padding: '10px 10px', display: 'flex', flexDirection: 'column', gap: 1, overflowY: 'auto' }}>
         {NAV.map(({ path, icon: Icon, label }) => (
-          <NavLink
-            key={path}
-            to={path}
-            className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
-          >
-            <Icon size={18} />
+          <NavLink key={path} to={path} className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}>
+            <Icon size={17} />
             <span>{label}</span>
           </NavLink>
         ))}
       </nav>
 
-      {/* XP bar */}
+      {/* Current language */}
       {user && (
-        <div className="px-3 pb-2">
-          <div className="card px-3 py-3">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex items-center gap-1.5 text-yellow-400 text-sm font-semibold">
-                <Zap size={13} />
-                <span>{user.xp} XP</span>
-              </div>
-              <span className="text-[10px] text-[#8b949e]">до уровня</span>
-            </div>
-            <div className="h-1.5 bg-[#21262d] rounded-full overflow-hidden">
-              <div className="progress-bar h-full" style={{ width: `${Math.min(user.xp % 100, 100)}%` }} />
-            </div>
+        <div style={{ padding: '0 10px 8px' }}>
+          <div style={{ padding: '8px 12px', borderRadius: 10, background: '#161b22', border: '1px solid #21262d', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 18 }}>{FLAGS[user.language]}</span>
+            <span style={{ fontSize: 13, color: '#8b949e', flex: 1 }}>{NAMES[user.language]}</span>
           </div>
         </div>
       )}
 
       {/* Logout */}
-      <div className="px-3 pb-3 border-t border-[#21262d] pt-3">
-        <button
-          onClick={() => { logout(); navigate('/') }}
-          className="nav-item text-red-400 hover:text-red-300 hover:!bg-red-500/10"
-        >
-          <LogOut size={18} />
+      <div style={{ padding: '0 10px 12px', borderTop: '1px solid #21262d', paddingTop: 8 }}>
+        <button onClick={() => { logout(); navigate('/') }} className="nav-item" style={{ color: '#f87171' }}>
+          <LogOut size={17} />
           <span>Выйти</span>
         </button>
       </div>
